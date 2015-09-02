@@ -50,7 +50,17 @@ public class SistemaDeVendas extends javax.swing.JFrame {
         btAdicionar = new javax.swing.JButton();
         btExcluir = new javax.swing.JButton();
         labEstoque = new javax.swing.JLayeredPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbEstoque = new javax.swing.JTable();
         labVendas = new javax.swing.JLayeredPane();
+        lbCodigoVendas = new javax.swing.JLabel();
+        txtCodigoVendas = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
 
         listProdutos = org.jdesktop.observablecollections.ObservableCollections.observableList(listProdutos);
 
@@ -135,27 +145,29 @@ public class SistemaDeVendas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(labProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
-                    .addGroup(labProdutosLayout.createSequentialGroup()
-                        .addComponent(lbCodigo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lbNome)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lbValor)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, labProdutosLayout.createSequentialGroup()
+                        .addGroup(labProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(labProdutosLayout.createSequentialGroup()
+                                .addComponent(lbCodigo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(lbNome)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(lbValor))
+                            .addGroup(labProdutosLayout.createSequentialGroup()
+                                .addComponent(btAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(39, 39, 39)
+                                .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(lbUnidades)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtUnidades, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(labProdutosLayout.createSequentialGroup()
-                        .addComponent(btAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
-                        .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(txtUnidades, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         labProdutosLayout.setVerticalGroup(
@@ -176,8 +188,8 @@ public class SistemaDeVendas extends javax.swing.JFrame {
                     .addComponent(btAdicionar)
                     .addComponent(btExcluir))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
+                .addContainerGap())
         );
         labProdutos.setLayer(lbCodigo, javax.swing.JLayeredPane.DEFAULT_LAYER);
         labProdutos.setLayer(lbNome, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -193,29 +205,95 @@ public class SistemaDeVendas extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Produtos", labProdutos);
 
+        jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, listProdutos, tbEstoque);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${codigo}"));
+        columnBinding.setColumnName("Codigo");
+        columnBinding.setColumnClass(Integer.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${nome}"));
+        columnBinding.setColumnName("Nome");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${unidades}"));
+        columnBinding.setColumnName("Unidades");
+        columnBinding.setColumnClass(Integer.class);
+        bindingGroup.addBinding(jTableBinding);
+        jTableBinding.bind();
+
+        jScrollPane2.setViewportView(tbEstoque);
+
         javax.swing.GroupLayout labEstoqueLayout = new javax.swing.GroupLayout(labEstoque);
         labEstoque.setLayout(labEstoqueLayout);
         labEstoqueLayout.setHorizontalGroup(
             labEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 667, Short.MAX_VALUE)
+            .addGroup(labEstoqueLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 647, Short.MAX_VALUE)
+                .addContainerGap())
         );
         labEstoqueLayout.setVerticalGroup(
             labEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 478, Short.MAX_VALUE)
+            .addGroup(labEstoqueLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
+                .addContainerGap())
         );
+        labEstoque.setLayer(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTabbedPane1.addTab("Estoque", labEstoque);
+
+        lbCodigoVendas.setText("Código");
+
+        jLabel1.setText("Nome");
+
+        jLabel2.setText("Valor");
+
+        jLabel3.setText("Unidades");
 
         javax.swing.GroupLayout labVendasLayout = new javax.swing.GroupLayout(labVendas);
         labVendas.setLayout(labVendasLayout);
         labVendasLayout.setHorizontalGroup(
             labVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 667, Short.MAX_VALUE)
+            .addGroup(labVendasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbCodigoVendas)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtCodigoVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         labVendasLayout.setVerticalGroup(
             labVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 478, Short.MAX_VALUE)
+            .addGroup(labVendasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(labVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbCodigoVendas)
+                    .addComponent(txtCodigoVendas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(447, Short.MAX_VALUE))
         );
+        labVendas.setLayer(lbCodigoVendas, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        labVendas.setLayer(txtCodigoVendas, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        labVendas.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        labVendas.setLayer(jTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        labVendas.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        labVendas.setLayer(jTextField2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        labVendas.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        labVendas.setLayer(jTextField3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTabbedPane1.addTab("Vendas", labVendas);
 
@@ -294,20 +372,30 @@ public class SistemaDeVendas extends javax.swing.JFrame {
     private javax.swing.JButton btAdicionar;
     private javax.swing.JButton btExcluir;
     private javax.persistence.EntityManager entityManager;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
     private javax.swing.JLayeredPane labEstoque;
     private javax.swing.JLayeredPane labProdutos;
     private javax.swing.JLayeredPane labVendas;
     private javax.swing.JLabel lbCodigo;
+    private javax.swing.JLabel lbCodigoVendas;
     private javax.swing.JLabel lbNome;
     private javax.swing.JLabel lbUnidades;
     private javax.swing.JLabel lbValor;
     private java.util.List<Produto> listProdutos;
     private java.util.List<view.Produtos> produtosList;
     private javax.persistence.Query produtosQuery;
+    private javax.swing.JTable tbEstoque;
     private javax.swing.JTable tbProdutos;
     private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtCodigoVendas;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtUnidades;
     private javax.swing.JTextField txtValor;
