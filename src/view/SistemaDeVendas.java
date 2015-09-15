@@ -7,7 +7,7 @@ package view;
 
 import java.util.LinkedList;
 import javax.swing.text.html.HTML;
-import model.Produto;
+import controller.Produto;
 
 /**
  *
@@ -50,24 +50,24 @@ public class SistemaDeVendas extends javax.swing.JFrame {
         tbProdutos = new javax.swing.JTable();
         btAdicionar = new javax.swing.JButton();
         btExcluir = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jLCadastro = new javax.swing.JLabel();
+        jLEstoque = new javax.swing.JLabel();
         labVendas = new javax.swing.JLayeredPane();
         jScrollPane4 = new javax.swing.JScrollPane();
-        tbEstoque1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        tbVendas = new javax.swing.JTable();
+        jLVendaDeProdutos = new javax.swing.JLabel();
+        jLNomeProduto = new javax.swing.JLabel();
+        jTNomeProduto = new javax.swing.JTextField();
+        jLUnidadesEmEstoque = new javax.swing.JLabel();
+        jTUnidadesEmEstoque = new javax.swing.JTextField();
+        jLValorVendaUnidade = new javax.swing.JLabel();
+        jTValorVendaUnidade = new javax.swing.JTextField();
+        jLVender = new javax.swing.JLabel();
+        jLNumeroUnidadesVendidas = new javax.swing.JLabel();
+        jTNumeroUnidadesVendidas = new javax.swing.JTextField();
+        jLValorTotal = new javax.swing.JLabel();
+        jTValorTotal = new javax.swing.JTextField();
+        jBFinalizar = new javax.swing.JButton();
 
         listProdutos = org.jdesktop.observablecollections.ObservableCollections.observableList(listProdutos);
 
@@ -153,16 +153,16 @@ public class SistemaDeVendas extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Cadastro");
-        jLabel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jLCadastro.setBackground(new java.awt.Color(255, 255, 255));
+        jLCadastro.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLCadastro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLCadastro.setText("Cadastro");
+        jLCadastro.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Estoque");
-        jLabel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jLEstoque.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLEstoque.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLEstoque.setText("Estoque");
+        jLEstoque.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         javax.swing.GroupLayout labProdutosLayout = new javax.swing.GroupLayout(labProdutos);
         labProdutos.setLayout(labProdutosLayout);
@@ -171,7 +171,7 @@ public class SistemaDeVendas extends javax.swing.JFrame {
             .addGroup(labProdutosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(labProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 756, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, labProdutosLayout.createSequentialGroup()
                         .addComponent(lbCodigo)
@@ -189,7 +189,7 @@ public class SistemaDeVendas extends javax.swing.JFrame {
                         .addComponent(lbUnidades)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtUnidades, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLEstoque, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(labProdutosLayout.createSequentialGroup()
                         .addGroup(labProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -201,7 +201,7 @@ public class SistemaDeVendas extends javax.swing.JFrame {
             labProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(labProdutosLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(jLabel5)
+                .addComponent(jLCadastro)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(labProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbCodigo)
@@ -215,7 +215,7 @@ public class SistemaDeVendas extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(jLabel6)
+                .addComponent(jLEstoque)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -233,12 +233,12 @@ public class SistemaDeVendas extends javax.swing.JFrame {
         labProdutos.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         labProdutos.setLayer(btAdicionar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         labProdutos.setLayer(btExcluir, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        labProdutos.setLayer(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        labProdutos.setLayer(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        labProdutos.setLayer(jLCadastro, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        labProdutos.setLayer(jLEstoque, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTabbedPane1.addTab("Produtos", labProdutos);
 
-        jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, listProdutos, tbEstoque1);
+        jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, listProdutos, tbVendas);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${nome}"));
         columnBinding.setColumnName("Nome");
         columnBinding.setColumnClass(String.class);
@@ -251,67 +251,67 @@ public class SistemaDeVendas extends javax.swing.JFrame {
         bindingGroup.addBinding(jTableBinding);
         jTableBinding.bind();
 
-        jScrollPane4.setViewportView(tbEstoque1);
+        jScrollPane4.setViewportView(tbVendas);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/finalizar.png"))); // NOI18N
-        jButton1.setText("Finalizar");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
-            }
-        });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        jLVendaDeProdutos.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLVendaDeProdutos.setText("Venda de Produtos");
 
-        jLabel4.setText("Valor total:");
+        jLNomeProduto.setText("Nome do produto:");
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Venda de Produtos");
+        jTNomeProduto.setEditable(false);
 
-        jLabel2.setText("Nome do produto:");
-
-        jLabel3.setText("Unidades em estoque:");
-
-        jLabel7.setText("Valor de venda por unidade:");
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setText("Vender");
-
-        jLabel9.setText("Número de unidades vendidas:");
-
-        jTextField1.setEditable(false);
-
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tbEstoque1, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.nome}"), jTextField1, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tbVendas, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.nome}"), jTNomeProduto, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
 
-        jTextField2.setEditable(false);
+        jLUnidadesEmEstoque.setText("Unidades em estoque:");
 
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tbEstoque1, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.unidades}"), jTextField2, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        jTUnidadesEmEstoque.setEditable(false);
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tbVendas, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.unidades}"), jTUnidadesEmEstoque, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
 
-        jTextField3.setEditable(false);
+        jLValorVendaUnidade.setText("Valor de venda por unidade:");
 
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tbEstoque1, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.valor}"), jTextField3, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        jTValorVendaUnidade.setEditable(false);
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tbVendas, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.valor}"), jTValorVendaUnidade, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
 
-        jTextField4.addCaretListener(new javax.swing.event.CaretListener() {
+        jLVender.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLVender.setText("Vender");
+
+        jLNumeroUnidadesVendidas.setText("Número de unidades vendidas:");
+
+        jTNumeroUnidadesVendidas.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                jTextField4CaretUpdate(evt);
+                jTNumeroUnidadesVendidasCaretUpdate(evt);
             }
         });
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        jTNumeroUnidadesVendidas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                jTNumeroUnidadesVendidasActionPerformed(evt);
             }
         });
 
-        jTextField5.setEditable(false);
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        jLValorTotal.setText("Valor total:");
+
+        jTValorTotal.setEditable(false);
+        jTValorTotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                jTValorTotalActionPerformed(evt);
+            }
+        });
+
+        jBFinalizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/finalizar.png"))); // NOI18N
+        jBFinalizar.setText("Finalizar");
+        jBFinalizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jBFinalizarMouseClicked(evt);
+            }
+        });
+        jBFinalizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBFinalizarActionPerformed(evt);
             }
         });
 
@@ -325,34 +325,34 @@ public class SistemaDeVendas extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(labVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(labVendasLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(jLNomeProduto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1))
+                        .addComponent(jTNomeProduto))
                     .addGroup(labVendasLayout.createSequentialGroup()
-                        .addComponent(jLabel9)
+                        .addComponent(jLNumeroUnidadesVendidas)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField4))
+                        .addComponent(jTNumeroUnidadesVendidas))
                     .addGroup(labVendasLayout.createSequentialGroup()
                         .addGroup(labVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel8))
+                            .addComponent(jLVendaDeProdutos)
+                            .addComponent(jLVender))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, labVendasLayout.createSequentialGroup()
                         .addGap(0, 95, Short.MAX_VALUE)
                         .addGroup(labVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, labVendasLayout.createSequentialGroup()
-                                .addComponent(jLabel4)
+                                .addComponent(jLValorTotal)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jTValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jBFinalizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(labVendasLayout.createSequentialGroup()
-                        .addComponent(jLabel7)
+                        .addComponent(jLValorVendaUnidade)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField3))
+                        .addComponent(jTValorVendaUnidade))
                     .addGroup(labVendasLayout.createSequentialGroup()
-                        .addComponent(jLabel3)
+                        .addComponent(jLUnidadesEmEstoque)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField2)))
+                        .addComponent(jTUnidadesEmEstoque)))
                 .addGap(21, 21, 21))
         );
         labVendasLayout.setVerticalGroup(
@@ -362,47 +362,47 @@ public class SistemaDeVendas extends javax.swing.JFrame {
                 .addGroup(labVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(labVendasLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(jLVendaDeProdutos)
                         .addGap(18, 18, 18)
                         .addGroup(labVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLNomeProduto)
+                            .addComponent(jTNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(27, 27, 27)
                         .addGroup(labVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLUnidadesEmEstoque)
+                            .addComponent(jTUnidadesEmEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(33, 33, 33)
                         .addGroup(labVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLValorVendaUnidade)
+                            .addComponent(jTValorVendaUnidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel8)
+                        .addComponent(jLVender)
                         .addGap(18, 18, 18)
                         .addGroup(labVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLNumeroUnidadesVendidas)
+                            .addComponent(jTNumeroUnidadesVendidas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(23, 23, 23)
                         .addGroup(labVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLValorTotal)
+                            .addComponent(jTValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jBFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         labVendas.setLayer(jScrollPane4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        labVendas.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        labVendas.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        labVendas.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        labVendas.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        labVendas.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        labVendas.setLayer(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        labVendas.setLayer(jLabel8, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        labVendas.setLayer(jLabel9, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        labVendas.setLayer(jTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        labVendas.setLayer(jTextField2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        labVendas.setLayer(jTextField3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        labVendas.setLayer(jTextField4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        labVendas.setLayer(jTextField5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        labVendas.setLayer(jLVendaDeProdutos, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        labVendas.setLayer(jLNomeProduto, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        labVendas.setLayer(jTNomeProduto, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        labVendas.setLayer(jLUnidadesEmEstoque, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        labVendas.setLayer(jTUnidadesEmEstoque, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        labVendas.setLayer(jLValorVendaUnidade, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        labVendas.setLayer(jTValorVendaUnidade, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        labVendas.setLayer(jLVender, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        labVendas.setLayer(jLNumeroUnidadesVendidas, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        labVendas.setLayer(jTNumeroUnidadesVendidas, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        labVendas.setLayer(jLValorTotal, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        labVendas.setLayer(jTValorTotal, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        labVendas.setLayer(jBFinalizar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTabbedPane1.addTab("Vendas", labVendas);
 
@@ -448,83 +448,48 @@ public class SistemaDeVendas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCodigoActionPerformed
 
-    private void jTextField4CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField4CaretUpdate
+    private void jTNumeroUnidadesVendidasCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTNumeroUnidadesVendidasCaretUpdate
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4CaretUpdate
+    }//GEN-LAST:event_jTNumeroUnidadesVendidasCaretUpdate
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jBFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFinalizarActionPerformed
         // TODO adicionar venda ao clicar no botao:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jBFinalizarActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void jTNumeroUnidadesVendidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTNumeroUnidadesVendidasActionPerformed
         
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_jTNumeroUnidadesVendidasActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void jTValorTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTValorTotalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_jTValorTotalActionPerformed
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void jBFinalizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBFinalizarMouseClicked
         System.out.println("Venda realizada com sucesso!");
-    }//GEN-LAST:event_jButton1MouseClicked
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SistemaDeVendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SistemaDeVendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SistemaDeVendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SistemaDeVendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SistemaDeVendas().setVisible(true);
-            }
-        });
-    }
+    }//GEN-LAST:event_jBFinalizarMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAdicionar;
     private javax.swing.JButton btExcluir;
     private javax.persistence.EntityManager entityManager;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JButton jBFinalizar;
+    private javax.swing.JLabel jLCadastro;
+    private javax.swing.JLabel jLEstoque;
+    private javax.swing.JLabel jLNomeProduto;
+    private javax.swing.JLabel jLNumeroUnidadesVendidas;
+    private javax.swing.JLabel jLUnidadesEmEstoque;
+    private javax.swing.JLabel jLValorTotal;
+    private javax.swing.JLabel jLValorVendaUnidade;
+    private javax.swing.JLabel jLVendaDeProdutos;
+    private javax.swing.JLabel jLVender;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTextField jTNomeProduto;
+    private javax.swing.JTextField jTNumeroUnidadesVendidas;
+    private javax.swing.JTextField jTUnidadesEmEstoque;
+    private javax.swing.JTextField jTValorTotal;
+    private javax.swing.JTextField jTValorVendaUnidade;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JLayeredPane labProdutos;
     private javax.swing.JLayeredPane labVendas;
     private javax.swing.JLabel lbCodigo;
@@ -532,10 +497,10 @@ public class SistemaDeVendas extends javax.swing.JFrame {
     private javax.swing.JLabel lbUnidades;
     private javax.swing.JLabel lbValor;
     private java.util.List<Produto> listProdutos;
-    private java.util.List<view.Produtos> produtosList;
+    private java.util.List<model.Produtos> produtosList;
     private javax.persistence.Query produtosQuery;
-    private javax.swing.JTable tbEstoque1;
     private javax.swing.JTable tbProdutos;
+    private javax.swing.JTable tbVendas;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtUnidades;
