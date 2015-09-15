@@ -409,15 +409,21 @@ public class SistemaDeVendas extends javax.swing.JFrame {
         tbProdutos.setRowSelectionInterval(nLinhas, nLinhas);
         txtCodigo.requestFocus();
     }//GEN-LAST:event_btAdicionarActionPerformed
-
-    private void jBFinalizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBFinalizarMouseClicked
-        int selecionado = tbProdutos.getSelectedRow();
-        Produto produto = listProdutos.get(tbProdutos.convertRowIndexToModel(selecionado));
         
-        if (Integer.parseInt(jTNumeroUnidadesVendidas.getText()) < Integer.parseInt(jTUnidadesEmEstoque.getText())) {
+    private void jBFinalizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBFinalizarMouseClicked
+        int linhaatual = tbVendas.getSelectedRow();
+      
+        Produto produto = listProdutos.get(tbVendas.convertRowIndexToModel(linhaatual));
+        
+        if (produto.getUnidades() >= Integer.parseInt(jTNumeroUnidadesVendidas.getText())) {
             double valorTotal = produto.getValor() * Double.parseDouble(jTNumeroUnidadesVendidas.getText());
             jTValorTotal.setText(String.valueOf(valorTotal));
+            int desconto = produto.getUnidades() - Integer.parseInt(jTNumeroUnidadesVendidas.getText());
+            listProdutos.get(tbVendas.convertRowIndexToModel(linhaatual)).setUnidades(desconto);
             
+            int novoEstoque = Integer.parseInt(jTUnidadesEmEstoque.getText()) - Integer.parseInt(jTNumeroUnidadesVendidas.getText());
+            System.out.println("Novo Estoque" + novoEstoque);
+            produto.getUnidades(novoEstoque);            
         } else {
             JFrame frame = new JFrame("Estoque insuficiente!");
             String estoqueMax = jTUnidadesEmEstoque.getText();
