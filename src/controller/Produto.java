@@ -80,5 +80,9 @@ public class Produto {
         propertyChangeSupport.firePropertyChange(PROP_UNIDADES, oldUnidades, unidades);
     }
 
+    public void getUnidades(int novoEstoque) {
+        
+    }
+
     
 }
