@@ -31,7 +31,7 @@ import javax.persistence.Transient;
     @NamedQuery(name = "Produtos.findByQuantidade", query = "SELECT p FROM Produtos p WHERE p.quantidade = :quantidade")})
 public class Produtos implements Serializable {
     @Transient
-    private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
+    private PropertyChangeSupport changeSupport;
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -46,9 +46,11 @@ public class Produtos implements Serializable {
     private Integer quantidade;
 
     public Produtos() {
+        this.changeSupport = new PropertyChangeSupport(this);
     }
 
     public Produtos(Integer id) {
+        this.changeSupport = new PropertyChangeSupport(this);
         this.id = id;
     }
 

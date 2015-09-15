@@ -6,8 +6,9 @@
 package view;
 
 import java.util.LinkedList;
-import javax.swing.text.html.HTML;
 import controller.Produto;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -36,6 +37,8 @@ public class SistemaDeVendas extends javax.swing.JFrame {
         entityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("sistemadevendas?zeroDateTimeBehavior=convertToNullPU").createEntityManager();
         produtosQuery = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT p FROM Produtos p");
         produtosList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : produtosQuery.getResultList();
+        produtosQuery1 = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT p FROM Produtos p");
+        produtosList1 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : produtosQuery1.getResultList();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         labProdutos = new javax.swing.JLayeredPane();
         lbCodigo = new javax.swing.JLabel();
@@ -48,9 +51,9 @@ public class SistemaDeVendas extends javax.swing.JFrame {
         txtUnidades = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbProdutos = new javax.swing.JTable();
-        btAdicionar = new javax.swing.JButton();
         btExcluir = new javax.swing.JButton();
         jLCadastro = new javax.swing.JLabel();
+        btAdicionar = new javax.swing.JButton();
         jLEstoque = new javax.swing.JLabel();
         labVendas = new javax.swing.JLayeredPane();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -91,12 +94,6 @@ public class SistemaDeVendas extends javax.swing.JFrame {
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tbProdutos, org.jdesktop.beansbinding.ELProperty.create("${selectedElement!=null}"), txtCodigo, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
         bindingGroup.addBinding(binding);
 
-        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCodigoActionPerformed(evt);
-            }
-        });
-
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tbProdutos, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.nome}"), txtNome, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tbProdutos, org.jdesktop.beansbinding.ELProperty.create("${selectedElement!=null}"), txtNome, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
@@ -112,12 +109,6 @@ public class SistemaDeVendas extends javax.swing.JFrame {
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tbProdutos, org.jdesktop.beansbinding.ELProperty.create("${selectedElement!=null}"), txtUnidades, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
         bindingGroup.addBinding(binding);
 
-        txtUnidades.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUnidadesActionPerformed(evt);
-            }
-        });
-
         tbProdutos.setName("tbProdutos"); // NOI18N
 
         org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, listProdutos, tbProdutos);
@@ -127,23 +118,15 @@ public class SistemaDeVendas extends javax.swing.JFrame {
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${nome}"));
         columnBinding.setColumnName("Nome");
         columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${valor}"));
-        columnBinding.setColumnName("Valor");
-        columnBinding.setColumnClass(Double.class);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${unidades}"));
         columnBinding.setColumnName("Unidades");
         columnBinding.setColumnClass(Integer.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${valor}"));
+        columnBinding.setColumnName("Valor");
+        columnBinding.setColumnClass(Double.class);
         bindingGroup.addBinding(jTableBinding);
         jTableBinding.bind();
         jScrollPane1.setViewportView(tbProdutos);
-
-        btAdicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/Add.png"))); // NOI18N
-        btAdicionar.setText("Adicionar");
-        btAdicionar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btAdicionarActionPerformed(evt);
-            }
-        });
 
         btExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/btexcluir.png"))); // NOI18N
         btExcluir.setText("Excluir");
@@ -158,6 +141,14 @@ public class SistemaDeVendas extends javax.swing.JFrame {
         jLCadastro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLCadastro.setText("Cadastro");
         jLCadastro.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        btAdicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/Add.png"))); // NOI18N
+        btAdicionar.setText("Adicionar");
+        btAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAdicionarActionPerformed(evt);
+            }
+        });
 
         jLEstoque.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLEstoque.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -231,9 +222,9 @@ public class SistemaDeVendas extends javax.swing.JFrame {
         labProdutos.setLayer(txtValor, javax.swing.JLayeredPane.DEFAULT_LAYER);
         labProdutos.setLayer(txtUnidades, javax.swing.JLayeredPane.DEFAULT_LAYER);
         labProdutos.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        labProdutos.setLayer(btAdicionar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         labProdutos.setLayer(btExcluir, javax.swing.JLayeredPane.DEFAULT_LAYER);
         labProdutos.setLayer(jLCadastro, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        labProdutos.setLayer(btAdicionar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         labProdutos.setLayer(jLEstoque, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTabbedPane1.addTab("Produtos", labProdutos);
@@ -282,36 +273,15 @@ public class SistemaDeVendas extends javax.swing.JFrame {
 
         jLNumeroUnidadesVendidas.setText("Número de unidades vendidas:");
 
-        jTNumeroUnidadesVendidas.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                jTNumeroUnidadesVendidasCaretUpdate(evt);
-            }
-        });
-        jTNumeroUnidadesVendidas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTNumeroUnidadesVendidasActionPerformed(evt);
-            }
-        });
-
         jLValorTotal.setText("Valor total:");
 
         jTValorTotal.setEditable(false);
-        jTValorTotal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTValorTotalActionPerformed(evt);
-            }
-        });
 
         jBFinalizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/finalizar.png"))); // NOI18N
         jBFinalizar.setText("Finalizar");
         jBFinalizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBFinalizarMouseClicked(evt);
-            }
-        });
-        jBFinalizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBFinalizarActionPerformed(evt);
             }
         });
 
@@ -435,37 +405,26 @@ public class SistemaDeVendas extends javax.swing.JFrame {
         Produto p = new Produto();
         listProdutos.add(p);
 
-        int nLinhas = tbProdutos.getRowCount()-1;
+        int nLinhas = tbProdutos.getRowCount() - 1;
         tbProdutos.setRowSelectionInterval(nLinhas, nLinhas);
         txtCodigo.requestFocus();
     }//GEN-LAST:event_btAdicionarActionPerformed
 
-    private void txtUnidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUnidadesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUnidadesActionPerformed
-
-    private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCodigoActionPerformed
-
-    private void jTNumeroUnidadesVendidasCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTNumeroUnidadesVendidasCaretUpdate
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTNumeroUnidadesVendidasCaretUpdate
-
-    private void jBFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFinalizarActionPerformed
-        // TODO adicionar venda ao clicar no botao:
-    }//GEN-LAST:event_jBFinalizarActionPerformed
-
-    private void jTNumeroUnidadesVendidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTNumeroUnidadesVendidasActionPerformed
-        
-    }//GEN-LAST:event_jTNumeroUnidadesVendidasActionPerformed
-
-    private void jTValorTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTValorTotalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTValorTotalActionPerformed
-
     private void jBFinalizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBFinalizarMouseClicked
-        System.out.println("Venda realizada com sucesso!");
+        int selecionado = tbProdutos.getSelectedRow();
+        Produto produto = listProdutos.get(tbProdutos.convertRowIndexToModel(selecionado));
+        
+        if (Integer.parseInt(jTNumeroUnidadesVendidas.getText()) < Integer.parseInt(jTUnidadesEmEstoque.getText())) {
+            double valorTotal = produto.getValor() * Double.parseDouble(jTNumeroUnidadesVendidas.getText());
+            jTValorTotal.setText(String.valueOf(valorTotal));
+            
+        } else {
+            JFrame frame = new JFrame("Estoque insuficiente!");
+            String estoqueMax = jTUnidadesEmEstoque.getText();
+            JOptionPane.showMessageDialog(frame,
+                    "O número de unidades do produto em estoque é insuficiente.", "Estoque insuficiente!",            
+                    JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jBFinalizarMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -498,7 +457,9 @@ public class SistemaDeVendas extends javax.swing.JFrame {
     private javax.swing.JLabel lbValor;
     private java.util.List<Produto> listProdutos;
     private java.util.List<model.Produtos> produtosList;
+    private java.util.List<model.Produtos> produtosList1;
     private javax.persistence.Query produtosQuery;
+    private javax.persistence.Query produtosQuery1;
     private javax.swing.JTable tbProdutos;
     private javax.swing.JTable tbVendas;
     private javax.swing.JTextField txtCodigo;
